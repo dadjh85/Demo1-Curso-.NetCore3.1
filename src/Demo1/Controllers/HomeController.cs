@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Demo1.Controllers
 {
@@ -8,7 +9,8 @@ namespace Demo1.Controllers
     {
         public IActionResult Index()
         {
-            return Content("Hello world!");
+            string entorno = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            return Content($"Hola Mundo! - valor de la variable de entorno 'ASPNETCORE_ENVIRONMENT': {entorno}");
         }
     }
 }
