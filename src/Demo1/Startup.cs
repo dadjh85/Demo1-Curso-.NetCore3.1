@@ -1,3 +1,4 @@
+using Demo1.Configuration.MapperConfiguration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +30,11 @@ namespace Demo1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.Configure<ServiceInformationMapper>(Configuration.GetSection("ServiceInformation"));
+
+            //Example of Get value of ServiceInformationMapper in ConfigureService
+            ServiceInformationMapper serviceInformation = new ServiceInformationMapper();
+            Configuration.GetSection("ServiceInformation").Bind(serviceInformation);
         }
 
         /// <summary>

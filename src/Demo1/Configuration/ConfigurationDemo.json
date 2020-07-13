@@ -1,0 +1,8 @@
+{
+  "valueDemo": "testvalue",
+  "ServiceInformation": {
+    "url": "https://localhost",
+    "port": 80,
+    "name":  "test"
+  }
+}
