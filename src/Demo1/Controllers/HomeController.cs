@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Services.TestService;
 using System;
 
 namespace Demo1.Controllers
@@ -12,11 +13,13 @@ namespace Demo1.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly ServiceInformationMapper _serviceInformationMapper;
+        private readonly ITestService _testService;
 
-        public HomeController(IConfiguration configuration, IOptions<ServiceInformationMapper> serviceInformationMapper)
+        public HomeController(IConfiguration configuration, IOptions<ServiceInformationMapper> serviceInformationMapper, ITestService testService)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _serviceInformationMapper = serviceInformationMapper.Value ?? throw new ArgumentNullException(nameof(serviceInformationMapper));
+            _testService = testService ?? throw new ArgumentNullException(nameof(testService));
         }
 
         public IActionResult Index()
@@ -38,6 +41,12 @@ namespace Demo1.Controllers
         public IActionResult GetConfigurationService()
         {
             return Content($"Service Information: url: {_serviceInformationMapper.Url} port: {_serviceInformationMapper.Port} name: {_serviceInformationMapper.Name}");
+        }
+
+        [Route("dependencyInectionExample")]
+        public IActionResult GetFirstTestService()
+        {
+            return Content(_testService.GetFirst().ToString());
         }
     }
 }

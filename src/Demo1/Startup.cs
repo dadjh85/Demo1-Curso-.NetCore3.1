@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Services.TestService;
 
 namespace Demo1
 {
@@ -31,6 +32,9 @@ namespace Demo1
         {
             services.AddControllers();
             services.Configure<ServiceInformationMapper>(Configuration.GetSection("ServiceInformation"));
+
+            //Example of IoC in .NET Core
+            services.AddScoped<ITestService, TestService>();
 
             //Example of Get value of ServiceInformationMapper in ConfigureService
             ServiceInformationMapper serviceInformation = new ServiceInformationMapper();
