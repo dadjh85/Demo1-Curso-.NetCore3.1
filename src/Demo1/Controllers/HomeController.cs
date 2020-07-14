@@ -29,8 +29,9 @@ namespace Demo1.Controllers
         public IActionResult GetConfiguration()
         {
             string valueDemo = _configuration["valueDemo"];
+            string testObjectDemo = _configuration["testObjectDemo:item1"];
             string valueFileXml = _configuration["applicationNameDemo"];
-            return Content($"el valor del fichero personalizado de configuración es: {valueDemo} - valor fichero xml: {valueFileXml}");
+            return Content($"el valor del fichero personalizado de configuración es: {valueDemo} - value objectDemo: {testObjectDemo} - valor fichero xml: {valueFileXml}");
         }
 
         [Route("ConfigurationService")]
