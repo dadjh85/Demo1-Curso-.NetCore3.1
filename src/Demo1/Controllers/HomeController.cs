@@ -9,7 +9,7 @@ namespace Demo1.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly ServiceInformationMapper _serviceInformationMapper;
